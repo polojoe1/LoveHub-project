@@ -1,0 +1,333 @@
+.content{
+    background-image: linear-gradient(rgba(30, 30, 30, 0.556), rgba(238, 23, 23, 0.221)), url("Images/DhbKur.jpeg");
+    background-size: cover;
+    
+    
+}
+
+
+a{
+    color: wheat;
+}
+
+.content{
+    width: 100%;
+    height: 633px;
+}
+.mainstuff{
+    height: 550px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    transition: 300ms;
+    
+}
+
+.log_button{
+    background-color: rgb(237, 32, 100);
+    color: white;
+    border-radius: 10px;
+    height: 40px;
+    width: 90px;
+    border: none;
+    margin-left: 120px;
+    
+}
+.log_button:hover{
+    color: rgb(237, 32, 100);
+    background-color: white;
+}
+
+.footer{
+    height: 833px;
+    width: 100%;
+    background-color: white;
+}
+
+.testimonies{
+    width: 100%;
+    height: 300px;
+    background-color: white;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+.quote{
+    width: 300px;
+    height: 300px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    box-shadow: 2px 2px rgb(15, 15, 15);
+    background-color: aliceblue;
+}
+.couples{
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.test{
+    margin: auto;
+    text-align: center;
+}
+
+.tags{
+    width: 100%;
+    height: 230px;
+    background-color: white;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+.list{
+    text-decoration: none;
+    color: black;
+}
+
+
+.big{
+    color: white;
+    font-size: 100px;
+}
+
+.big_button{
+    width: 230px;
+    height: 55px;
+    border-radius: 100px;
+    border: none;
+    margin-top: 10px;
+    background: linear-gradient(rgba(232, 57, 107, 0.767), rgba(88, 4, 4, 0.596));
+    color: white;
+    font-size: large;
+}
+.big_button:hover{
+    background: linear-gradient(rgba(88, 4, 4, 0.596),rgba(232, 57, 107, 0.767));
+}
+.coming{
+    height: 80px;
+    width:275px;
+    margin-top: 40px;
+    color: white;
+    cursor: pointer;
+}
+.please:hover{
+    
+    transition: 500ms;
+    font-size: 20px;
+    color: rgb(226, 63, 63);
+}
+.soon {
+    font-size: large;
+    font-weight: bolder;
+    transition: 500ms;
+}
+ul>h4{
+    text-decoration: underline;
+}
+.disappear{
+    opacity: 0.1;
+    transition: 500ms;
+}
+.nav-link{
+    font-weight: bolder;
+    margin-left: 50px;
+    font-size: larger;
+}
+.randomline{
+    height: 1px;
+    width: 90%;
+    margin: auto;
+    background-color: gray;
+    margin-top: 25px;
+}
+
+.apps{
+    display: flex;
+    height: 100px;
+    width: 100%;
+    margin-top: 50px;
+    margin-left: 70px;
+    
+    align-items: center;
+}
+.black{
+    margin-left: 40px;
+    color: white;
+    background-color: black;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+}
+
+/* main_page.html */
+
+.fullpage{
+    height: 640px;
+    width: 100%;
+    display: flex;
+}
+
+.leftNav{
+    height: 100%;
+    width: 25%;
+    background-color: whitesmoke;
+    border: 2px solid gray;
+    display: flex;
+    flex-direction: column;
+}
+.rightContent{
+    height: 100%;
+    width: 75%;
+    
+}
+.topNav{
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background: linear-gradient(rgba(255, 5, 176, 0.64),rgba(239, 213, 70, 0.637));
+}
+.topNav2{
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    
+}
+.profilepic{
+    height: 40px;
+    width: 40px;
+    background-color: darkgray;
+    border-radius: 100%;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.picWithMessage{
+    height: 100%;
+    width: 248px;
+    display: flex;
+    flex-direction: column;
+}
+.under{
+    text-decoration: underline;
+}
+.logoTop{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.hub{
+    color: rgba(220, 20, 220, 0.649);
+}
+.selection{
+    width: 100%;
+    /* background-color: bisque; */
+    height: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.otherSwipes{
+    width: 80%;
+    height: 95%;
+    background-color: lightslategray;
+    border-radius: 20px;
+}
+.likeOrDislike{
+    position: absolute;
+    width: 75%;
+    bottom: 0px;
+    top: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aqua; */
+}
+.dislikeThem{
+    height: 90%;
+    width: 115px;
+    background-color: plum;
+    background: linear-gradient(rgba(229, 9, 9, 0.739),rgba(229, 9, 159, 0.374));
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(229, 9, 9, 0.649);
+    cursor: pointer;
+}
+.likeThem{
+    height: 90%;
+    width: 115px;
+    background-color: plum;
+    background: linear-gradient(rgba(255, 5, 176, 0.64),rgba(243, 106, 200, 0.525));
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(220, 20, 220, 0.649);
+    cursor: pointer;
+}
+.bigger_heart{
+    font-size: 72px;
+}
+.logout{
+    margin-left: 20px ;
+}
+
+/* messaging */
+
+.pinkmessage{
+    height: fit-content;
+    width: fit-content;
+    background-color: pink;
+    display: block;
+    margin: 10px;
+    border-radius: 10px 10px 10px 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.mymessage{
+    height: fit-content;
+    width: fit-content;
+    background-color: rgb(205, 203, 203);
+    display: block;
+    margin-left: 80%;
+    border-radius: 10px 0px 10px 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+
+.selectionMessage{
+    width: 100%;
+    /* background-color: bisque; */
+    height: 80%;
+    margin: auto;
+    
+    
+}
+.noTextDecor{
+    text-decoration: none;
+    color: black;
+}
+.noTextDecor:hover{
+    color: palevioletred;
+}
+.topPart{
+    display: flex;
+    justify-content: space-around;
+    height: fit-content;
+    width: 100%;
+}
