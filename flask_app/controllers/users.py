@@ -46,11 +46,12 @@ def main_page():
         return redirect('/')
     else:
         id={"id":session['user_id']}
-        
+        matches=User.all_matches(id)
         logged_user= User.get_by_id(id)
-        
-        
-    return render_template('main_page.html', users=logged_user)
+        potentials=User.all_potential_matches(id)
+        potentials_id = potentials.id
+        print(potentials_id)
+    return render_template('main_page.html',matches=matches, users=logged_user, potentials=potentials)
 
 @app.route('/logout')
 def logout():
@@ -68,4 +69,46 @@ def login():
         flash('Invalid email or password')
         return redirect('/login_page')
     session['user_id']=user_in_db.id
+    return redirect('/dash')
+
+@app.route('/like_them')
+def like_them():
+    id = {"id":session['user_id']}
+    potentials=User.all_potential_matches(id).id
+    data={'id':session['user_id'],
+        "potentials":potentials}
+    User.move_to_match(data)
+    return redirect('/dash')
+
+@app.route('/dislike_them')
+def dislike_them():
+    id = {"id":session['user_id']}
+    potentials=User.all_potential_matches(id).id
+    data={'id':session['user_id'],
+        "potentials":potentials}
+    User.disliked(data)
+
+    return redirect('/dash')
+
+@app.route('/messages/<int:potential>')
+def specific_message(potential):
+    id = {"id":session['user_id']}
+    potentials=User.all_potential_matches(id).id
+    data={'id':session['user_id'],
+    "potentials":potential}
+    matches=User.all_matches(id)
+    logged_user= User.get_by_id(id)
+    potential={"potential":potential}
+    talk_with=User.get_by_potential(potential)
+    messages=User.get_messages_by_data(data)
+    return render_template('message.html',messages=messages, matches=matches, user=logged_user,messenger=talk_with)
+
+@app.route('/send/message/<int:receiver>',methods=["POST"])
+def send_message_now(receiver):
+    data = {
+        'id':session['user_id'],
+        'receiver':receiver,
+        'message':request.form['message']
+    }
+    User.create_message(data)
     return redirect('/dash')

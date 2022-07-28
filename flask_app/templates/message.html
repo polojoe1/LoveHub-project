@@ -13,13 +13,10 @@
         <div class="leftNav">
             <div class="topNav mb-3">
                 <div class="profilepic"></div>
-                
-                <h4 class="text-center">{{users.first_name}}</h4>
-                
+                <h4 class="text-center">{{user.first_name}}</h4>
                 <a href="/logout"><button class="logout ml-2 btn btn-danger">Logout</button></a>
             </div>
             <h5 class="text-center under">Messages</h5>
-            
             {% for match in matches %}
             <a href="/messages/{{match.id}}" class="noTextDecor"><div class="topNav2 mb-2 message">
                 <div class="profilepic"></div>
@@ -29,32 +26,27 @@
                     </div>
             </div></a>
             {% endfor %}
-            
-            
         </div>
 
         <div class="rightContent">
             <div class="logoTop">
                 <h1 class="text-center">💞Love<h1 class="hub">Hub</h1></h1>
             </div>
-            <div class="selection">
-                <div class="otherSwipes">
-
-                    {% if potentials %}
-                        {{potentials.first_name}} {{potentials.last_name}}
-                    
-                    {% else %}
-                        <p>No more active users</p>
-                    {% endif %}
+            <div class="selectionMessage">
+                <div class="topPart">
+                    <h2 class="text-center">{{messenger.first_name}} {{messenger.last_name}}</h2>
+                    <a href="/dash"><h2 class="text">x</h2></a>
                 </div>
-                <div class="likeOrDislike">
-                    <a href="/dislike_them"><div class="dislikeThem">
-                        <h1 class="bigger_heart">❌</h1>
-                    </div></a>
-                    <a href="/like_them"><div class="likeThem">
-                        <h1 class="bigger_heart">💞</h1>
-                    </div></a>
-                </div>
+                {% for message in messages %}
+                <div class="pinkmessage"><p class="text-center">{{message.message}}</p></div>
+                {% endfor %}
+                <!-- <div class="mymessage"><p class="text-center">How are you?</p></div> -->
+            </div>
+            <div class="sendmessage">
+                <form action="/send/message/{{messenger.id}}" method="post">
+                    <textarea name="message" id="message" cols="40" rows="1"></textarea>
+                    <input type="submit" class="btn btn-success" value="send">
+                </form>
             </div>
         </div>
 

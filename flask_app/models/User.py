@@ -1,7 +1,9 @@
+from random import random, randrange
 from flask import flash, redirect
 import re
 from flask_app.config.mysqlconnetion import connectToMySQL
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+
 class User:
     def __init__(self,data):
         self.id=data['id']
@@ -12,6 +14,7 @@ class User:
         self.password=data['password']
         self.created_at=data['created_at']
         self.updated_at=data['updated_at']
+        self.others = []
         
 
 
@@ -60,3 +63,72 @@ class User:
         if len(result) < 1:
             return False
         return cls(result[0])
+
+    @classmethod
+    def all_potential_matches(cls,id):
+        query="SELECT * FROM users WHERE users.id != %(id)s AND users.id NOT IN( select users_id FROM matches WHERE users_id2=%(id)s union All select users_id2 FROM matches WHERE users_id=%(id)s) AND users.id NOT IN( select users_id FROM disliked WHERE users_id2=%(id)s union All select users_id2 FROM disliked WHERE users_id=%(id)s );"
+        results= connectToMySQL('practice').query_db(query,id)
+        potentials = []
+        for user in results:
+            one_user = cls(user)
+            
+            potentials.append(one_user)
+        
+        return potentials[0]
+        
+
+    
+
+    @classmethod
+    def all_matches(cls,id):
+        query="SELECT * FROM users WHERE users.id != %(id)s AND users.id IN( select users_id FROM matches WHERE users_id2=%(id)s union All select users_id2 FROM matches WHERE users_id=%(id)s);"
+        results= connectToMySQL('practice').query_db(query,id)
+        matches = []
+        for user in results:
+            one_user = cls(user)
+            # user_data= {
+            #     'id':user['users.id'],
+            #     'first_name':user['first_name'],
+            #     'last_name': user['last_name'],
+            #     'email': user['email'],
+            #     'password':user['password'],
+            #     'created_at': user['users.created_at'],
+            #     'updated_at': user['users.updated_at']
+            # }
+            matches.append(one_user)
+        return matches
+
+
+    @classmethod
+    def move_to_match(cls,data):
+        query="INSERT INTO matches(users_id,users_id2) VALUES(%(id)s,%(potentials)s)"
+        return connectToMySQL('practice').query_db(query,data)
+
+    @classmethod
+    def disliked(cls,data):
+        query="INSERT INTO disliked(users_id,users_id2) VALUES(%(id)s,%(potentials)s)"
+        return connectToMySQL('practice').query_db(query,data)
+
+    @classmethod
+    def get_by_potential(cls,potential):
+        query = "SELECT * FROM users WHERE id = %(potential)s;"
+        result = connectToMySQL("practice").query_db(query,potential)
+        # Didn't find a matching user
+        if len(result) < 1:
+            return False
+        return cls(result[0])
+
+    @classmethod
+    def get_messages_by_data(cls,data):
+        query="SELECT * FROM messages Where users_id=%(id)s and users_id2 =%(potentials)s ORDER BY created_at"
+        result = connectToMySQL("practice").query_db(query,data)
+        messages=[]
+        for message in result:
+            one_message=(message)
+            messages.append(one_message)
+        return messages
+
+    @classmethod
+    def create_message(cls,data):
+        query="INSERT INTO messages(users_id,users_id2,message,created_at) VALUES(%(id)s,%(receiver)s,%(message)s,NOW()) ON DUPLICATE KEY UPDATE message=%(message)s,created_at=NOW();"
+        return connectToMySQL("practice").query_db(query,data)
