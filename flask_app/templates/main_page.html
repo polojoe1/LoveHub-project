@@ -40,21 +40,23 @@
             <div class="selection">
                 <div class="otherSwipes">
 
-                    {% if potentials %}
-                        {{potentials.first_name}} {{potentials.last_name}}
+                    {% if has_potentials %}
+                        <h2 class="text-light">{{potentials.first_name}} </h2> <h2 class="hub2"> {{potentials.last_name}}</h2>
                     
                     {% else %}
-                        <p>No more active users</p>
+                        <h1 class="text-light">No more active users</h1>
                     {% endif %}
                 </div>
+                {% if has_potentials %}
                 <div class="likeOrDislike">
-                    <a href="/dislike_them"><div class="dislikeThem">
+                    <a class="noDecor" href="/dislike_them"><div class="dislikeThem">
                         <h1 class="bigger_heart">❌</h1>
                     </div></a>
-                    <a href="/like_them"><div class="likeThem">
+                    <a class="noDecor" href="/like_them"><div class="likeThem">
                         <h1 class="bigger_heart">💞</h1>
                     </div></a>
                 </div>
+                {% endif %}
             </div>
         </div>
 

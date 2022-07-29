@@ -171,6 +171,15 @@ ul>h4{
     display: flex;
 }
 
+.noDecor{
+    text-decoration: none;
+}
+.bigger_heart:hover{
+    font-size: 90px;
+}
+.dislikeThem:hover,.likeThem:hover{
+    box-shadow: 5px 5px 5px rgba(90, 91, 88, 0.635);
+}
 .leftNav{
     height: 100%;
     width: 25%;
@@ -178,6 +187,7 @@ ul>h4{
     border: 2px solid gray;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 .rightContent{
     height: 100%;
@@ -185,7 +195,7 @@ ul>h4{
     
 }
 .topNav{
-    height: 70px;
+    height: 85px;
     width: 100%;
     display: flex;
     justify-content: left;
@@ -227,6 +237,9 @@ ul>h4{
 .hub{
     color: rgba(220, 20, 220, 0.649);
 }
+.hub2{
+    color: rgba(220, 20, 220, 0.891);
+}
 .selection{
     width: 100%;
     /* background-color: bisque; */
@@ -240,7 +253,7 @@ ul>h4{
 .otherSwipes{
     width: 80%;
     height: 95%;
-    background-color: lightslategray;
+    background-color: rgb(65, 65, 65);
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -293,22 +306,32 @@ ul>h4{
     height: fit-content;
     width: fit-content;
     background-color: pink;
-    display: block;
+    
     margin: 10px;
-    border-radius: 10px 10px 10px 0px;
+    border-radius: 0px 10px 10px 10px;
     padding-left: 10px;
     padding-right: 10px;
+    box-shadow: 3px 3px 3px rgba(112, 128, 144, 0.781);
 }
-
+.displayMyMessage{
+    height: 300px;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* background-color: aqua; */
+    align-items: center;
+}
 .mymessage{
     height: fit-content;
     width: fit-content;
     background-color: rgb(205, 203, 203);
-    display: block;
-    margin-left: 80%;
-    border-radius: 10px 0px 10px 10px;
+    
+    /* margin-left: 80%; */
+    border-radius: 10px 10px 0px 10px;
     padding-left: 10px;
     padding-right: 10px;
+    box-shadow: 3px 3px 3px slategray;
 }
 
 
@@ -333,8 +356,16 @@ ul>h4{
     justify-content: space-around;
     height: fit-content;
     width: 100%;
+    margin-top: 30px;
+    background: linear-gradient(rgba(255, 0, 187, 0.437),rgba(242, 87, 216, 0.322),rgba(255, 255, 255, 0.526));
 }
 
+.textExit{
+    color: darkred;
+}
+.textExit:hover{
+    color: blue;
+}
 .sendmessage{
     position: absolute;
     left: 60%;
@@ -342,4 +373,6 @@ ul>h4{
     transform: translate(-50%,-50%);
     height: fit-content;
     width: fit-content;
+    display: flex;
+    justify-content: center;
 }

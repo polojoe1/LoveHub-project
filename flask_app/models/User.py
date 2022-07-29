@@ -71,9 +71,11 @@ class User:
         potentials = []
         for user in results:
             one_user = cls(user)
-            
+            print('Hello -----------', one_user)
             potentials.append(one_user)
-        
+        print(potentials)
+        if len(potentials)<1:
+            return False
         return potentials[0]
         
 
@@ -132,3 +134,13 @@ class User:
     def create_message(cls,data):
         query="INSERT INTO messages(users_id,users_id2,message,created_at) VALUES(%(id)s,%(receiver)s,%(message)s,NOW()) ON DUPLICATE KEY UPDATE message=%(message)s,created_at=NOW();"
         return connectToMySQL("practice").query_db(query,data)
+
+    @classmethod
+    def get_messages_by_data_receiver(cls,data):
+        query="SELECT * FROM messages Where users_id=%(potentials)s and users_id2 =%(id)s ORDER BY created_at"
+        result = connectToMySQL("practice").query_db(query,data)
+        messages=[]
+        for message in result:
+            one_message=(message)
+            messages.append(one_message)
+        return messages

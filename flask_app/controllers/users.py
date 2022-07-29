@@ -49,9 +49,15 @@ def main_page():
         matches=User.all_matches(id)
         logged_user= User.get_by_id(id)
         potentials=User.all_potential_matches(id)
-        potentials_id = potentials.id
-        print(potentials_id)
-    return render_template('main_page.html',matches=matches, users=logged_user, potentials=potentials)
+        has_potentials=True
+        # potentials_id = potentials.id
+        if not potentials:
+            has_potentials=False
+        else:
+            
+            potentials_id = potentials.id
+        
+    return render_template('main_page.html',has_potentials=has_potentials, matches=matches, users=logged_user, potentials=potentials)
 
 @app.route('/logout')
 def logout():
@@ -93,7 +99,7 @@ def dislike_them():
 @app.route('/messages/<int:potential>')
 def specific_message(potential):
     id = {"id":session['user_id']}
-    potentials=User.all_potential_matches(id).id
+    # potentials=User.all_potential_matches(id).id
     data={'id':session['user_id'],
     "potentials":potential}
     matches=User.all_matches(id)
@@ -101,7 +107,8 @@ def specific_message(potential):
     potential={"potential":potential}
     talk_with=User.get_by_potential(potential)
     messages=User.get_messages_by_data(data)
-    return render_template('message.html',messages=messages, matches=matches, user=logged_user,messenger=talk_with)
+    receivers=User.get_messages_by_data_receiver(data)
+    return render_template('message.html',receivers=receivers, messages=messages, matches=matches, user=logged_user,messenger=talk_with)
 
 @app.route('/send/message/<int:receiver>',methods=["POST"])
 def send_message_now(receiver):
@@ -111,4 +118,6 @@ def send_message_now(receiver):
         'message':request.form['message']
     }
     User.create_message(data)
-    return redirect('/dash')
+    
+    
+    return redirect(f'/messages/{receiver}')

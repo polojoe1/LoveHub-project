@@ -11,11 +11,12 @@
 <body>
     <div class="fullpage">
         <div class="leftNav">
-            <div class="topNav mb-3">
+            <div class="topNav mb-3 sticky-top">
                 <div class="profilepic"></div>
                 <h4 class="text-center">{{user.first_name}}</h4>
                 <a href="/logout"><button class="logout ml-2 btn btn-danger">Logout</button></a>
             </div>
+            <em class="text-center mb-1">Like Snapchat... Our message delete after one message. Only send one message at a time! remember your conversation. If not you'll let the other person know the conversation isn't interesting 😅</em>
             <h5 class="text-center under">Messages</h5>
             {% for match in matches %}
             <a href="/messages/{{match.id}}" class="noTextDecor"><div class="topNav2 mb-2 message">
@@ -35,16 +36,20 @@
             <div class="selectionMessage">
                 <div class="topPart">
                     <h2 class="text-center">{{messenger.first_name}} {{messenger.last_name}}</h2>
-                    <a href="/dash"><h2 class="text">x</h2></a>
+                    <a href="/dash"><h2 class="textExit">x</h2></a>
                 </div>
-                {% for message in messages %}
-                <div class="pinkmessage"><p class="text-center">{{message.message}}</p></div>
-                {% endfor %}
-                <!-- <div class="mymessage"><p class="text-center">How are you?</p></div> -->
+                <div class="displayMyMessage">
+                    {% for receive in receivers %}
+                    <div class="pinkmessage"><p class="text-center">{{receive.message}}</p></div>
+                    {% endfor %}
+                    {% for message in messages %}
+                    <div class="mymessage"><p class="text-center">{{message.message}}</p></div>
+                    {% endfor %}
+                </div>
             </div>
             <div class="sendmessage">
-                <form action="/send/message/{{messenger.id}}" method="post">
-                    <textarea name="message" id="message" cols="40" rows="1"></textarea>
+                <form action="/send/message/{{messenger.id}}" class="form-control" method="post">
+                    <textarea name="message" id="message" class="form-control mb-1 z-depth-1" placeholder="Keep messages less that 245 characters" cols="40" rows="1"></textarea>
                     <input type="submit" class="btn btn-success" value="send">
                 </form>
             </div>
